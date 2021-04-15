@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-
-  print("nihao");
-
-  // runApp(MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -77,7 +74,54 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("home page"),
       ),
       body: Container(
-        child: Text("hello flutter"),
+        color: Colors.green,
+        alignment: Alignment.center,
+        // child: Column(
+        //   children: [
+        //     // Column(
+        //     //   children: [
+        //     //     Container(width: MediaQuery.of(context).size.width,child: Text("data"),color: Colors.blue,),
+        //     //     Container(width: double.infinity,child: Text("data"),color: Colors.blue,),
+        //     //   ],
+        //     // ),
+        //   ],
+        // ),
+
+        child: ListView(
+          children: [
+            Container(
+              height: 50,
+              alignment: Alignment.center,
+              color: Colors.blue,
+              child: Text("data"),
+            ),
+            Container(
+              height: 50,
+              alignment: Alignment.center,
+              color: Colors.blue,
+              child: Text("data"),
+            ),
+            Container(
+              height: 50,
+              alignment: Alignment.center,
+              color: Colors.blue,
+              child: Text("data"),
+            ),
+            Container(
+              height: 50,
+              alignment: Alignment.center,
+              color: Colors.blue,
+              child: Text("data"),
+            ),
+            Container(
+              height: 50,
+              alignment: Alignment.center,
+              color: Colors.blue,
+              child: Text("data"),
+            ),
+          ],
+        ),
+
       ),
     );
   }
