@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(BinApp()); //默认运行构造方法
 }
 
-class MyApp extends StatelessWidget {
+class BinApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //构造方法返回一个app
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -46,83 +48,150 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("home page"),
-      ),
-      body: Container(
-        color: Colors.green,
-        alignment: Alignment.center,
-        // child: Column(
-        //   children: [
-        //     // Column(
-        //     //   children: [
-        //     //     Container(width: MediaQuery.of(context).size.width,child: Text("data"),color: Colors.blue,),
-        //     //     Container(width: double.infinity,child: Text("data"),color: Colors.blue,),
-        //     //   ],
-        //     // ),
-        //   ],
-        // ),
 
-        child: ListView(
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: Text('nav title'),
+    //   ),
+    //   body: Container(
+    //     child: ListView(
+    //       children: [
+    //         ListTile(
+    //           title: Text('list title'),
+    //         )
+    //       ],
+    //     ),
+    //   ),
+    // );
+
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text("nav title"),
+        // backgroundColor: Color.fromRGBO(55, 59, 78, 1),
+        backgroundColor: Color.fromARGB(255, 55, 59, 78),
+        leading: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: 50,
-              alignment: Alignment.center,
-              color: Colors.blue,
-              child: Text("data"),
+              child: Image.asset('images/退出登录icon.png'),
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 3.5),
             ),
-            Container(
-              height: 50,
-              alignment: Alignment.center,
-              color: Colors.blue,
-              child: Text("data"),
+            Text(
+              '退出',
+              style: TextStyle(fontSize: 10, decoration: TextDecoration.none, color: Colors.white),
+            )
+          ],
+        ),
+        border: Border.all(style: BorderStyle.none),
+      ),
+      child: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            GestureDetector(
+              child: Container(
+                width: double.infinity,
+                color: Colors.blue,
+                child: Text(
+                  'dialog 样例',
+                  style: TextStyle(decoration: TextDecoration.none, fontSize: 25),
+                ),
+              ),
+              onTap: () {
+                binDialog(context, '简单的样例');
+              },
             ),
-            Container(
-              height: 50,
-              alignment: Alignment.center,
-              color: Colors.blue,
-              child: Text("data"),
-            ),
-            Container(
-              height: 50,
-              alignment: Alignment.center,
-              color: Colors.blue,
-              child: Text("data"),
-            ),
-            Container(
-              height: 50,
-              alignment: Alignment.center,
-              color: Colors.blue,
-              child: Text("data"),
+            GestureDetector(
+              child: Container(
+                width: double.infinity,
+                color: Colors.blue,
+                child: Text(
+                  '导航栏push pop 视图',
+                  style: TextStyle(decoration: TextDecoration.none, fontSize: 25),
+                ),
+              ),
+              onTap: () {
+                pushNextPage(context);
+              },
             ),
           ],
         ),
-
       ),
     );
   }
+
+  //dialog控件的基本使用
+  void binDialog(BuildContext context, para) {
+    showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            //✅ 弹窗的UI布局
+            title: Text('alert'),
+            // content: Text('content'),
+            content: Column(
+              children: [
+                Text(para),
+                Text('内容2'),
+              ],
+            ),
+            actions: [
+              CupertinoButton(
+                  child: Text('确定'),
+                  onPressed: () {
+                    Navigator.of(context).pop(); //关闭弹窗
+                  }),
+              CupertinoButton(
+                  child: Text('取消'),
+                  onPressed: () {
+                    Navigator.of(context).pop(); //关闭弹窗
+                  })
+            ],
+          );
+        });
+  }
+
+  //push下个页面 async...await...
+  void pushNextPage(context) async{
+
+    //页面回传参数方式一
+    String para = await Navigator.push(context, CupertinoPageRoute(builder: (context){
+
+      SecondPageWidget secondPage = SecondPageWidget(para: '我是第一个页面的参数');
+      return secondPage;
+
+    }));
+
+    binDialog(context, para);
+
+  }
+
+}
+
+//第二个页面
+class SecondPageWidget extends StatelessWidget{
+
+  String para;
+
+  SecondPageWidget({Key? key, required this.para}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('second page'),
+      ),
+      child: Center(
+        child: GestureDetector(
+          child: Text(para),
+          onTap: (){
+            Navigator.pop(context, '我是第二个参数');
+          },
+        ),
+      ),
+    );
+  }
+  
 }
