@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ScrollViewExample extends StatelessWidget {
   ScrollViewExample({Key? key}) : super(key: key);
@@ -21,7 +22,9 @@ class ScrollViewExample extends StatelessWidget {
     );
   }
 
-  //最简单的网格样例 GridView;achedNetworkImage网络图片加载
+  //最简单的网格样例 GridView;
+  // CachedNetworkImage网络图片加载
+  // FadeInImage网络图片加载
   GridView sampleGridView() {
     return GridView.count(
       childAspectRatio: 0.5,
@@ -30,22 +33,30 @@ class ScrollViewExample extends StatelessWidget {
         if (index % 3 == 0) {
           return Container(
             color: Colors.blue,
+            child: FadeInImage.memoryNetwork(//内存占位图
+                placeholder: kTransparentImage, //一个渐变效果
+                image:
+                    'https://tukuimg.bdstatic.com/scrop/6be65a47b2bc49e492385b8ebc486d14.gif'), //网络占位图
           );
         } else if (index % 3 == 1) {
           return Container(
-            color: Colors.yellow,
-            child: CachedNetworkImage(
-              fit: BoxFit.cover,
-              placeholder: (context, imageurl){
-                return Image.asset('images/退出登录icon.png');
-              },
-              imageUrl:
-                  'https://upload.jianshu.io/users/upload_avatars/2484771/5b6597d9-59c8-4f7a-9467-754c4add953f.png?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120',
-            ),
+            color: Colors.purple,
+            child: FadeInImage.assetNetwork(//本地占位图
+                placeholder: 'images/退出登录icon.png',
+                image:
+                'https://tukuimg.bdstatic.com/scrop/6be65a47b2bc49e492385b8ebc486d14.gif'),
           );
         } else {
           return Container(
-            color: Colors.purple,
+            color: Colors.yellow,
+            child: CachedNetworkImage(//本地占位图
+              fit: BoxFit.cover,
+              placeholder: (context, imageurl) {
+                return Image.asset('images/退出登录icon.png');
+              },
+              imageUrl:
+              'https://upload.jianshu.io/users/upload_avatars/2484771/5b6597d9-59c8-4f7a-9467-754c4add953f.png',
+            ),
           );
         }
       }),
