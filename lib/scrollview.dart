@@ -41,8 +41,9 @@ class ScrollViewExample extends StatelessWidget {
         } else if (index % 3 == 1) {
           return Container(
             color: Colors.purple,
-            child: FadeInImage.assetNetwork(//本地占位图
-                placeholder: 'images/退出登录icon.png',
+            child: FadeInImage.assetNetwork(//本地占位图 占位图可用gif或者普通图片
+                // placeholder: 'images/退出登录icon.png',
+                placeholder: 'images/imageloadinggif.gif',
                 image:
                 'https://tukuimg.bdstatic.com/scrop/6be65a47b2bc49e492385b8ebc486d14.gif'),
           );
