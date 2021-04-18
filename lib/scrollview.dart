@@ -26,6 +26,9 @@ class ScrollViewExample extends StatelessWidget {
   // CachedNetworkImage网络图片加载
   // FadeInImage网络图片加载
   GridView sampleGridView() {
+
+    PaintingBinding.instance?.imageCache?.clear();
+
     return GridView.count(
       childAspectRatio: 0.5,
       crossAxisCount: 2,
