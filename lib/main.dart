@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'scrollview.dart';
 
 void main() {
   runApp(BinApp()); //默认运行构造方法
@@ -50,7 +51,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-
     // return Scaffold(
     //   appBar: AppBar(
     //     title: Text('nav title'),
@@ -80,7 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '退出',
-              style: TextStyle(fontSize: 10, decoration: TextDecoration.none, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 10,
+                  decoration: TextDecoration.none,
+                  color: Colors.white),
             )
           ],
         ),
@@ -96,7 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.blue,
                 child: Text(
                   'dialog 样例',
-                  style: TextStyle(decoration: TextDecoration.none, fontSize: 25),
+                  style:
+                      TextStyle(decoration: TextDecoration.none, fontSize: 25),
                 ),
               ),
               onTap: () {
@@ -108,12 +112,43 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: double.infinity,
                 color: Colors.blue,
                 child: Text(
-                  '导航栏push pop 视图',
-                  style: TextStyle(decoration: TextDecoration.none, fontSize: 25),
+                  '导航栏push pop 视图 传参方式一',
+                  style:
+                      TextStyle(decoration: TextDecoration.none, fontSize: 25),
                 ),
               ),
               onTap: () {
                 pushNextPage(context);
+              },
+            ),
+            GestureDetector(
+              child: Container(
+                width: double.infinity,
+                color: Colors.blue,
+                child: Text(
+                  '导航栏push pop 视图 传参方式二',
+                  style:
+                  TextStyle(decoration: TextDecoration.none, fontSize: 25),
+                ),
+              ),
+              onTap: () {
+                pushNextPage2(context);
+              },
+            ),
+            GestureDetector(
+              child: Container(
+                width: double.infinity,
+                color: Colors.blue,
+                child: Text(
+                  'scrollview',
+                  style:
+                  TextStyle(decoration: TextDecoration.none, fontSize: 25),
+                ),
+              ),
+              onTap: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (context){
+                  return ScrollViewExample();
+                }));
               },
             ),
           ],
@@ -133,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // content: Text('content'),
             content: Column(
               children: [
-                Text(para),
+                Text(para??'系统pop非点击pop'),
                 Text('内容2'),
               ],
             ),
@@ -154,25 +189,28 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   //push下个页面 async...await...
-  void pushNextPage(context) async{
-
+  void pushNextPage(context) async {
     //页面回传参数方式一
-    String para = await Navigator.push(context, CupertinoPageRoute(builder: (context){
-
+    String para =
+        await Navigator.push(context, CupertinoPageRoute(builder: (context) {
       SecondPageWidget secondPage = SecondPageWidget(para: '我是第一个页面的参数');
       return secondPage;
-
     }));
-
     binDialog(context, para);
-
   }
 
+  void pushNextPage2(context) {
+    //页面回传参数方式二
+    Navigator.push(context, CupertinoPageRoute(builder: (content) {
+      return SecondPageWidget(para: 'para');
+    })).then((value) {
+      binDialog(context, value);
+    });
+  }
 }
 
 //第二个页面
-class SecondPageWidget extends StatelessWidget{
-
+class SecondPageWidget extends StatelessWidget {
   String para;
 
   SecondPageWidget({Key? key, required this.para}) : super(key: key);
@@ -186,12 +224,11 @@ class SecondPageWidget extends StatelessWidget{
       child: Center(
         child: GestureDetector(
           child: Text(para),
-          onTap: (){
+          onTap: () {
             Navigator.pop(context, '我是第二个参数');
           },
         ),
       ),
     );
   }
-  
 }
