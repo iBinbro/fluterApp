@@ -12,9 +12,9 @@ class ScrollViewExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      // navigationBar: CupertinoNavigationBar(
-      //   middle: Text('scrollview'),
-      // ),
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('scrollview'),
+      ),
       child: Center(
         // child: sampleNestedScrollView(context),
         child: sampleGridView(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'scrollview.dart';
+import 'tab.dart';
 
 void main() {
   runApp(BinApp()); //默认运行构造方法
@@ -148,6 +149,22 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(context, CupertinoPageRoute(builder: (context){
                   return ScrollViewExample();
+                }));
+              },
+            ),
+            GestureDetector(
+              child: Container(
+                width: double.infinity,
+                color: Colors.blue,
+                child: Text(
+                  'tab example',
+                  style:
+                  TextStyle(decoration: TextDecoration.none, fontSize: 25),
+                ),
+              ),
+              onTap: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (context){
+                  return TabPage();
                 }));
               },
             ),
