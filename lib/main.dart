@@ -4,6 +4,7 @@ import 'scrollview.dart';
 import 'tab.dart';
 
 void main() {
+
   runApp(BinApp()); //默认运行构造方法
 }
 
