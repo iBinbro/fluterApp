@@ -8,7 +8,7 @@ void main() {
   // }
 
   //func直接去掉 然后()即为直接调用方法 匿名函数
-  () {
+      () {
     print("func");
   }();
 
@@ -50,8 +50,8 @@ void main() {
   void printInfo2(String name, {String sex = '男', int age = 10}) {
     print(name + sex + age.toString());
   }
-
   printInfo2("22", age: 333, sex: "人要");
+  printInfo2('33');
 
   //函数作为参数传递
   void paraFuncPara(String name) {
@@ -63,44 +63,4 @@ void main() {
   }
 
   runFunc("我是runFunc参数", paraFuncPara);
-
-  //dart语法糖 ?. ??
-  Dog dog = Dog();
-  //?. 如果dog为nul dog.name也会返回null
-  print(dog?.name);
-
-  //??
-  print(dog.name ?? "前面的值如果为null 则输出这一行");
-
-  // setter getter
-  Student stu = Student('小明', 12);
-
-  print(stu.studentinfo);
-
-  stu.nextStudentName = '小华';
-
-  print(stu.studentinfo);
-}
-
-class Dog {
-  var name;
-  int age = 0;
-}
-
-// 函数的 setter  getter
-class Student extends Object {
-  String name = '';
-  int age = 0;
-
-  //构造函数
-  Student(this.name, this.age);
-
-  String get studentinfo {
-    return '$name的年龄是$age';
-  }
-
-  set nextStudentName(String name) {
-    this.name = name;
-    this.age = age;
-  }
 }

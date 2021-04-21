@@ -79,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: Image.asset('images/退出登录icon.png'),
               margin: EdgeInsets.fromLTRB(0, 0, 0, 3.5),
+
             ),
             Text(
               '退出',
