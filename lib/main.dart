@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/dart_statefulwidget.dart';
 import 'scrollview.dart';
 import 'tab.dart';
 
@@ -167,6 +168,22 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(context, CupertinoPageRoute(builder: (context){
                   return TabPage();
+                }));
+              },
+            ),
+            GestureDetector(
+              child: Container(
+                width: double.infinity,
+                color: Colors.blue,
+                child: Text(
+                  'stateful widget 有状态组件',
+                  style:
+                  TextStyle(decoration: TextDecoration.none, fontSize: 25),
+                ),
+              ),
+              onTap: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (context){
+                  return BinStateFulExample();
                 }));
               },
             ),
