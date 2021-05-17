@@ -16,7 +16,7 @@ class BinApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //构造方法返回一个app
 
-    return createApp();
+    // return createRouterApp();
 
     return MaterialApp(
       title: 'Flutter Demo',

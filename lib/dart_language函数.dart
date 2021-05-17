@@ -63,4 +63,38 @@ void main() {
   }
 
   runFunc("我是runFunc参数", paraFuncPara);
+
+  // is 判断类型 c is A 表示c对象是否属于A或者A的子类。
+  // 以下均会执行
+  C c_objc = C();
+  if (c_objc is A){
+    print('c is A');
+  }
+  if (c_objc is B){
+    print('c is B');
+  }
+  if (c_objc is C){
+    print('c is C');
+  }
+
+  // as 一般配合try catch使用，强制类型转换，可以敲出被转换类型的属性，如果运行时类型不一致会抛出异常。
+  // a被声明为 int类型，没有name属性，但是用了as就可以使用name属性，因为a实际是int，所以在这会抛出异常
+  int a = 10;
+  try{
+    print((a as C).name);
+  }catch (e){
+    print(e);
+  }
+}
+
+class A extends Object{
+
+}
+
+class B extends A{
+
+}
+
+class C extends B{
+  String name = '只有C才有名字哦';
 }

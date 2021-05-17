@@ -1,18 +1,25 @@
 import 'package:flutter/cupertino.dart';
 
-Widget createApp() {
+Widget createRouterApp() {
   return CupertinoApp(
-    home: RouterDemo(),
-    routes: {'/secondPage': (context){//命名路由
-      return SecondPage();
-    }, '/thirdPage': (context){
-      return ThirdPage();
-    }},
-    initialRoute: '/secondPage',//默认打开的一个路由(默认会push该路由一次),
-    onGenerateRoute: (context){
-      print('每push一个');
-    },
-  );
+      home: RouterDemo(),
+      routes: {
+        '/secondPage': (context) {
+          //命名路由
+          return SecondPage();
+        },
+        '/thirdPage': (context) {
+          return ThirdPage();
+        }
+      },
+      initialRoute: '/secondPage', //默认打开的一个路由(默认会push该路由一次),
+
+      onGenerateRoute: (RouteSettings settings) {
+        //以命名路由打开一个未在routes配置的路由会进入此回调
+        return CupertinoPageRoute(builder: (context) {
+          return SecondPage();
+        });
+      });
 }
 
 class RouterDemo extends StatelessWidget {
@@ -40,6 +47,12 @@ class RouterDemo extends StatelessWidget {
                 child: Text('命名路由'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/secondPage');
+                },
+              ),
+              CupertinoButton(
+                child: Text('命名路由打开一个不存在的路由'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/secondPage7777');
                 },
               ),
             ],
@@ -74,12 +87,13 @@ class SecondPage extends StatelessWidget {
 void push(context) {
   // 普通路由push的两种写法
   Navigator.push(
-      context,
-      CupertinoPageRoute(
-          builder: (context) {
-            return SecondPage();
-          },
-          fullscreenDialog: false)).then((value) => print('返回的值==${value}'));
+          context,
+          CupertinoPageRoute(
+              builder: (context) {
+                return SecondPage();
+              },
+              fullscreenDialog: false))
+      .then((value) => print('返回的值==${value}'));
 
 //   Navigator.of(context).push(CupertinoPageRoute(
 //       builder: (context) {
@@ -89,8 +103,7 @@ void push(context) {
 //       fullscreenDialog: false));
 }
 
-void pushAwait(context) async{
-
+void pushAwait(context) async {
   var para = await Navigator.push(
       context,
       CupertinoPageRoute(
@@ -106,7 +119,6 @@ void pushAwait(context) async{
 class ThirdPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     var args = ModalRoute.of(context)?.settings.arguments;
 
     return CupertinoPageScaffold(
