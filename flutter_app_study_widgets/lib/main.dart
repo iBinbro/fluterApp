@@ -17,7 +17,13 @@ class MyApp extends StatelessWidget {
       //     splashColor: Colors.transparent, highlightColor: Colors.transparent),
 
       home: Scaffold(
+
+
+
+        //顶部导航栏
         appBar: B_AppBar.appbar,
+
+        //内容区域
         body: ListView.builder(
           itemBuilder: (context, index) {
             return ListTile(
@@ -31,6 +37,9 @@ class MyApp extends StatelessWidget {
           },
           itemCount: titles.length,
         ),
+
+
+
       ),
     );
   }

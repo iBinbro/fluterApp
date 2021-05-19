@@ -8,18 +8,49 @@ class AppTab extends StatefulWidget {
 class _AppTabState extends State<AppTab> {
   int _currentIndex = 0;
 
-  List _pages = [Text("page1"), Text("page2"), Text("page3")];
+  List _pages = [Text("page1"), Text("page2"), Text("page3"), Text("page4")];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: Text("BottomNavigationBar\nBottomNavigationBarItem\n构建底部导航栏", style: TextStyle(fontSize: 12, ),maxLines: 3,),
       ),
+
+      //drawer
+      drawer: Drawer(
+        child: ListView.builder(itemBuilder: (context, index){
+          if(index == 0){
+            return IconButton(onPressed: (){
+              Navigator.pop(context);
+            }, icon: Image.asset("images/back.png"));
+          }
+          return ListTile(
+            title: Text("title"),
+          );
+        }),
+      ),
+
       body: _pages[_currentIndex],
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {  },
+      ),
 
       //底部导航栏
       bottomNavigationBar: BottomNavigationBar(
+
+        //移动模式(转盘模式)
+        // type: BottomNavigationBarType.shifting,
+        // showSelectedLabels: true,
+        // showUnselectedLabels: true,
+
+        //固定模式
+        type: BottomNavigationBarType.fixed,
+
         //当前选择的索引
         currentIndex: _currentIndex,
 
@@ -69,7 +100,19 @@ class _AppTabState extends State<AppTab> {
               activeIcon: Container(
                 margin: EdgeInsets.fromLTRB(0, 8, 0, 4.5),
                 child: Image.asset("images/Quantsel.png"),
-              )),
+              )
+          ),
+          BottomNavigationBarItem(
+              label: "status",
+              icon: Container(
+                margin: EdgeInsets.fromLTRB(0, 8, 0, 4.5),
+                child: Image.asset("images/Quant.png"),
+              ),
+              activeIcon: Container(
+                margin: EdgeInsets.fromLTRB(0, 8, 0, 4.5),
+                child: Image.asset("images/Quantsel.png"),
+              )
+          ),
           BottomNavigationBarItem(
               label: "mine",
               icon: Container(
