@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/B_drawer.dart';
 
 class AppTab extends StatefulWidget {
   @override
@@ -6,43 +7,65 @@ class AppTab extends StatefulWidget {
 }
 
 class _AppTabState extends State<AppTab> {
+
   int _currentIndex = 0;
 
   List _pages = [Text("page1"), Text("page2"), Text("page3"), Text("page4")];
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-
       appBar: AppBar(
-        title: Text("BottomNavigationBar\nBottomNavigationBarItem\n构建底部导航栏", style: TextStyle(fontSize: 12, ),maxLines: 3,),
+        title: Text(
+          "BottomNavigationBar\nBottomNavigationBarItem\n构建底部导航栏",
+          style: TextStyle(
+            fontSize: 12,
+          ),
+          maxLines: 3,
+        ),
       ),
 
-      //drawer
-      drawer: Drawer(
+      //左侧边栏 一般使用Drawer
+      // drawer: B_drawer.drawer,
+
+      //自定义一个drawer
+      drawer: Container(
+        color: Colors.purple,
+        width: 200,
+        height: double.infinity,
         child: ListView.builder(itemBuilder: (context, index){
-          if(index == 0){
-            return IconButton(onPressed: (){
-              Navigator.pop(context);
-            }, icon: Image.asset("images/back.png"));
-          }
-          return ListTile(
-            title: Text("title"),
-          );
-        }),
+          return ListTile(title: Text("data"));
+        },itemCount: 20,),
       ),
 
-      body: _pages[_currentIndex],
+      //右 侧边栏
+      endDrawer: B_drawer.endDrawer,
+      drawerScrimColor: Colors.red, //抽屉背景色
+      drawerEdgeDragWidth: 100, //在距离屏幕边缘的距离范围内用户侧滑手势可以触发呼出抽屉事件
+      drawerEnableOpenDragGesture: true, //侧滑手势是否可以呼出抽屉
+      endDrawerEnableOpenDragGesture: true, //侧滑手势是否可以呼出抽屉
 
+      //底部导航条上方的一组按钮 对应的悬浮按钮也会向上移动 所以跟dock的悬浮按钮显示上会有冲突
+      persistentFooterButtons: [Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data")],
+
+      //按钮
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {  },
+        onPressed: () {
+
+          ScaffoldState? scaffoldState = context.findAncestorStateOfType<ScaffoldState>();
+          scaffoldState?.openDrawer();
+
+        },
       ),
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+
+      body: SafeArea(child: _pages[_currentIndex]),
 
       //底部导航栏
       bottomNavigationBar: BottomNavigationBar(
-
         //移动模式(转盘模式)
         // type: BottomNavigationBarType.shifting,
         // showSelectedLabels: true,
@@ -100,8 +123,7 @@ class _AppTabState extends State<AppTab> {
               activeIcon: Container(
                 margin: EdgeInsets.fromLTRB(0, 8, 0, 4.5),
                 child: Image.asset("images/Quantsel.png"),
-              )
-          ),
+              )),
           BottomNavigationBarItem(
               label: "status",
               icon: Container(
@@ -111,8 +133,7 @@ class _AppTabState extends State<AppTab> {
               activeIcon: Container(
                 margin: EdgeInsets.fromLTRB(0, 8, 0, 4.5),
                 child: Image.asset("images/Quantsel.png"),
-              )
-          ),
+              )),
           BottomNavigationBarItem(
               label: "mine",
               icon: Container(
