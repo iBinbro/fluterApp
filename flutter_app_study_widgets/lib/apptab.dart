@@ -67,6 +67,7 @@ class _AppTabState extends State<AppTab> {
       floatingActionButton: IconBtn(),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
 
+      //内容体
       body: SafeArea(child: _pages[_currentIndex]),
 
       //底部导航栏

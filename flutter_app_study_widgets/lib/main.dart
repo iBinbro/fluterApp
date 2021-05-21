@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/appLayout.dart';
 import 'package:flutter_app_study_widgets/appText.dart';
 import 'package:flutter_app_study_widgets/appbar.dart';
 import 'package:flutter_app_study_widgets/apptab.dart';
@@ -8,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  List titles = ["构建底部导航栏", "文本/富文本显示"];
+  List titles = ["构建底部导航栏", "文本/富文本显示", "布局组件"];
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,14 @@ class MyApp extends StatelessWidget {
                           MaterialPageRoute(builder: (context) {
                         return AppText();
                       }));
+                    }
+                    break;
+                  case 2:
+                    {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return AppLayout();
+                          }));
                     }
                     break;
                 }
