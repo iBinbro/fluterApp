@@ -65,7 +65,7 @@ class _CStatefulWidgetState extends State<CStatefulWidget> {
   }
 }
 
-class Home extends StatelessWidget {
+class AppContext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

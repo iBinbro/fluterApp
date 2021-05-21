@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/appText.dart';
 import 'package:flutter_app_study_widgets/appbar.dart';
 import 'package:flutter_app_study_widgets/apptab.dart';
 
@@ -7,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  List titles = ["构建底部导航栏"];
+  List titles = ["构建底部导航栏", "文本/富文本显示"];
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,6 @@ class MyApp extends StatelessWidget {
       //     splashColor: Colors.transparent, highlightColor: Colors.transparent),
 
       home: Scaffold(
-
-
-
         //顶部导航栏
         appBar: B_AppBar.appbar,
 
@@ -29,17 +27,29 @@ class MyApp extends StatelessWidget {
             return ListTile(
               title: Text(titles[index]),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return AppTab();
-                }));
+                switch (index) {
+                  case 0:
+                    {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AppTab();
+                      }));
+                    }
+                    break;
+                  case 1:
+                    {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AppText();
+                      }));
+                    }
+                    break;
+                }
               },
             );
           },
           itemCount: titles.length,
         ),
-
-
-
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_study_widgets/B_drawer.dart';
-import 'package:flutter_app_study_widgets/appHome.dart';
+import 'appcontext.dart';
 
 class IconBtn extends StatelessWidget {
   @override
@@ -23,7 +23,7 @@ class _AppTabState extends State<AppTab> {
 
   int _currentIndex = 0;
 
-  List _pages = [Home(), Text("page2"), Text("page3"), Text("page4")];
+  List _pages = [AppContext(), Text("page2"), Text("page3"), Text("page4")];
 
   @override
   Widget build(BuildContext context) {
