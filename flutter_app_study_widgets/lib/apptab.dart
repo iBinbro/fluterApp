@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_study_widgets/B_drawer.dart';
+import 'package:flutter_app_study_widgets/appHome.dart';
+
+class IconBtn extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      child: Icon(Icons.add),
+      onPressed: () {
+        Scaffold.of(context).openDrawer();
+      },
+    );
+  }
+}
 
 class AppTab extends StatefulWidget {
   @override
@@ -10,7 +23,7 @@ class _AppTabState extends State<AppTab> {
 
   int _currentIndex = 0;
 
-  List _pages = [Text("page1"), Text("page2"), Text("page3"), Text("page4")];
+  List _pages = [Home(), Text("page2"), Text("page3"), Text("page4")];
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +64,7 @@ class _AppTabState extends State<AppTab> {
 
       //按钮
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-
-          ScaffoldState? scaffoldState = context.findAncestorStateOfType<ScaffoldState>();
-          scaffoldState?.openDrawer();
-
-        },
-      ),
+      floatingActionButton: IconBtn(),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
 
       body: SafeArea(child: _pages[_currentIndex]),
