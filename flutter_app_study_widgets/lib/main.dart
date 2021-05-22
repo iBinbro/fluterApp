@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
 import 'package:flutter_app_study_widgets/appText.dart';
 import 'package:flutter_app_study_widgets/appbar.dart';
@@ -9,7 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  List titles = ["构建底部导航栏", "文本/富文本显示", "布局组件"];
+  List titles = ["构建底部导航栏", "文本/富文本显示", "布局组件 row column flow stack", "尺寸限制容器"];
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,14 @@ class MyApp extends StatelessWidget {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                             return AppLayout();
+                          }));
+                    }
+                    break;
+                  case 3:
+                    {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return AppConstraintBox();
                           }));
                     }
                     break;
