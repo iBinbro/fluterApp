@@ -25,13 +25,15 @@ class AppConstraintBox extends StatelessWidget {
         ),
       ));
 
+  //作用于父组件 子控件自动占满父组件
   Container aspectRatioContainer = Container(
     width: 200,
     color: Colors.red,
     //AspectRatio作用于父组件，根据aspectRatio计算父控件的宽或者高。子组件的宽高不起作用 父组件设置一个高度或者宽度即可
     child: AspectRatio(
-        aspectRatio: 2,
+        aspectRatio: 2, //containner高度为 200*2
         child: Container(
+          //填满container
           color: Colors.green,
           width: 10,
           height: 10,
@@ -39,19 +41,47 @@ class AppConstraintBox extends StatelessWidget {
         )),
   );
 
+  //子控件按父控件百分比布局
   Container fractionallySizedBox = Container(
     width: 200,
     height: 300,
     color: Colors.red,
     //子组件的宽高不起作用 与FractionallySizedBox的宽高银子有关
     child: FractionallySizedBox(
-        widthFactor: 0.5,//=>200*0.5
-        heightFactor: 0.5,//=>300*0.5
+        widthFactor: 0.5, //宽度即为父组件乘宽度因子=>200*0.5
+        heightFactor: 0.5, //高度即为父组件乘高度因子=>300*0.5
         child: Container(
           color: Colors.green,
           width: 10,
           height: 10,
         )),
+  );
+
+  DecoratedBox decoratedBox = DecoratedBox(
+    decoration: BoxDecoration(
+        //背景色
+        color: Colors.red,
+        //背景图片
+        image: DecorationImage(
+            image: AssetImage("images/home.png"), fit: BoxFit.contain),
+        //背景渐变效果
+        gradient: LinearGradient(colors:[Colors.red,Colors.blue]),
+        //圆角
+        borderRadius: BorderRadius.circular(100),
+        //边框
+        border: Border.all(
+            color: Colors.green, width: 10, style: BorderStyle.solid),
+        //阴影 阴影的添加时有顺序的 排在后面的阴影会遮盖前面的阴影
+        //以下 蓝色阴影offset要小于红色阴影，如果要两个阴影都能看见，则小范围的阴影要排在后面
+        boxShadow: [
+          BoxShadow(color: Colors.red, offset: Offset(12, 12), blurRadius: 5),
+          BoxShadow(color: Colors.blue, offset: Offset(4, 4), blurRadius: 5),
+        ]),
+    child: Container(
+      width: 100,
+      height: 100,
+      child: Text("DecoratedBox"),
+    ),
   );
 
   @override
@@ -82,7 +112,7 @@ class AppConstraintBox extends StatelessWidget {
           )
         ],
       ),
-      body: fractionallySizedBox,
+      body: decoratedBox,
     );
   }
 }
