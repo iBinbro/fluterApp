@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/appLayout_flow.dart';
 
 class AppLayout extends StatelessWidget {
   @override
@@ -114,7 +115,7 @@ class AppLayout extends StatelessWidget {
       appBar: AppBar(
         title: Text("layout 布局部件"),
       ),
-      body: wrap,
+      body: Flow_Demo(),
     );
   }
 }
