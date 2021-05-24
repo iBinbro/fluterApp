@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/apptab.dart';
 
 class AppInput extends StatelessWidget {
   Container textFieldContainer = Container(
@@ -14,13 +15,16 @@ class AppInput extends StatelessWidget {
         //边框圆角 必须有统一的边框属性 top left bottom right必须设置一模一样
 
         // borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10), topRight: Radius.circular(10)),
         // borderRadius: BorderRadius.circular(10),
-
       ),
       child: TextField(
         //多行输入 null时会自动调整高度
         maxLines: null,
+
+        //键盘右下角按钮类型
+        textInputAction: TextInputAction.done,
 
         //光标颜色
         cursorColor: Colors.yellow,
@@ -54,8 +58,42 @@ class AppInput extends StatelessWidget {
           //尾占位限制 编辑状态显示
           suffix: Image.asset("images/catesel.png"),
         ),
+
+        onChanged: (text) {
+          print("当前输入的文本");
+        },
       ),
     ),
+  );
+
+  Container textFormFieldContainer = Container(
+    child: Form(
+        child: Column(
+          children: [
+            TextFormField(
+              initialValue: "2",
+              validator: (text) {
+                return "输错了";
+              },
+            ),
+            TextFormField(
+              validator: (text) {
+                return "输错了";
+              },
+            ),
+            TextFormField(
+              validator: (text) {
+                return "输错了";
+              },
+            ),
+            TextFormField(
+              validator: (text) {
+                return "输错了";
+              },
+            ),
+            IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+          ],
+        )),
   );
 
   @override
@@ -64,6 +102,6 @@ class AppInput extends StatelessWidget {
         appBar: AppBar(
           title: Text("TextField TextFormField"),
         ),
-        body: textFieldContainer);
+        body: textFormFieldContainer);
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_app_study_widgets/appLayout.dart';
 import 'package:flutter_app_study_widgets/appText.dart';
 import 'package:flutter_app_study_widgets/appTextInput.dart';
 import 'package:flutter_app_study_widgets/appbar.dart';
+import 'package:flutter_app_study_widgets/appsliverappbar.dart';
 import 'package:flutter_app_study_widgets/apptab.dart';
 import 'package:flutter_app_study_widgets/assertsImageIcon.dart';
 
@@ -12,7 +13,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  List titles = ["构建底部导航栏", "文本/富文本显示", "布局组件 row column flow stack", "尺寸限制容器", "Assets、Images、Icon", "TextField TextFormField"];
+  List titles = [
+    "构建底部导航栏",
+    "文本/富文本显示",
+    "布局组件 row column flow stack",
+    "尺寸限制容器",
+    "Assets、Images、Icon",
+    "TextField TextFormField",
+    "SliverAppBar",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,31 +61,39 @@ class MyApp extends StatelessWidget {
                     {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return AppLayout();
-                          }));
+                        return AppLayout();
+                      }));
                     }
                     break;
                   case 3:
                     {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return AppConstraintBox();
-                          }));
+                        return AppConstraintBox();
+                      }));
                     }
                     break;
                   case 4:
                     {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return ImageDisplayExample();
-                          }));
+                        return ImageDisplayExample();
+                      }));
                     }
                     break;
                   case 5:
                     {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return AppInput();
+                        return AppInput();
+                      }));
+                    }
+                    break;
+                  case 6:
+                    {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return AppSliverBar();
                           }));
                     }
                     break;
