@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     "Assets、Images、Icon",
     "TextField TextFormField",
     "SliverAppBar",
+    "全局浮动按钮 Overlay/OverlayEntry",
   ];
 
   @override
@@ -95,6 +96,11 @@ class MyApp extends StatelessWidget {
                           MaterialPageRoute(builder: (context) {
                             return AppSliverBar();
                           }));
+                    }
+                    break;
+                  case 7:
+                    {
+
                     }
                     break;
                 }
