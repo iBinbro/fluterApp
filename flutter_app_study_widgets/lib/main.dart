@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
+import 'package:flutter_app_study_widgets/appTab_Tabbar_TabbarView_TabController.dart';
 import 'package:flutter_app_study_widgets/appText.dart';
 import 'package:flutter_app_study_widgets/appTextInput.dart';
 import 'package:flutter_app_study_widgets/appbar.dart';
 import 'package:flutter_app_study_widgets/appsliverappbar.dart';
-import 'package:flutter_app_study_widgets/apptab.dart';
 import 'package:flutter_app_study_widgets/assertsImageIcon.dart';
+import 'appBottomNavigationBar.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,8 +21,9 @@ class MyApp extends StatelessWidget {
     "尺寸限制容器",
     "Assets、Images、Icon",
     "TextField TextFormField",
-    "SliverAppBar",
+    "SliverAppBar (实现了吸顶效果以及tab切换视图)",
     "全局浮动按钮 Overlay/OverlayEntry",
+    "Tab Tabbar TabbarView TabController",
   ];
 
   @override
@@ -100,7 +102,14 @@ class MyApp extends StatelessWidget {
                     break;
                   case 7:
                     {
-
+                    }
+                    break;
+                  case 8:
+                    {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return AppTabbar();
+                          }));
                     }
                     break;
                 }

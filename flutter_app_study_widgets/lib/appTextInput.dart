@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_study_widgets/apptab.dart';
 
 class AppInput extends StatelessWidget {
   Container textFieldContainer = Container(
