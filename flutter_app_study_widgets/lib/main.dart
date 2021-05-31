@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/appDioNetRequest_jsonModel.dart';
 import 'package:flutter_app_study_widgets/appRouter404Page.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
     "Tab Tabbar TabbarView TabController",
     "路由跳转并传参",
     "routes onGenerateRoute 均未找到该路由 进入onUnknownRoute 返回404",
+    "网络请求Dio json模型转换",
   ];
 
   @override
@@ -162,6 +164,13 @@ class MyApp extends StatelessWidget {
                       })).then((value) {
                         print("通过then 得到的 pop 返回参数 = ${value}");
                       });
+                    }
+                    break;
+                  case 11:
+                    {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return NetListView();
+                      }));
                     }
                     break;
                 }
