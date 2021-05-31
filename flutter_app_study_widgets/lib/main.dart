@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/appAsync_Future.dart';
 import 'package:flutter_app_study_widgets/appDioNetRequest_jsonModel.dart';
 import 'package:flutter_app_study_widgets/appRouter404Page.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
     "Tab Tabbar TabbarView TabController",
     "路由跳转并传参",
     "routes onGenerateRoute 均未找到该路由 进入onUnknownRoute 返回404",
-    "网络请求Dio json模型转换",
+    "网络请求Dio json模型转换 页面异步刷新",
+    "flutter 异步编程 Future、async、await、FutureBuilder",
   ];
 
   @override
@@ -170,6 +172,13 @@ class MyApp extends StatelessWidget {
                     {
                       Navigator.push(context, MaterialPageRoute(builder: (context){
                         return NetListView();
+                      }));
+                    }
+                    break;
+                  case 12:
+                    {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return AppAsync();
                       }));
                     }
                     break;
