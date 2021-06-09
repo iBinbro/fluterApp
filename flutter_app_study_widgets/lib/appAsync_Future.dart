@@ -98,14 +98,14 @@ class _AppAsyncState extends State<AppAsync> {
 //               IconButton(
 //                   onPressed: () {
 //
-//                     // futureMethod().then((value) {
-//                     //   print(value + "=>then");
-//                     // }).onError((error, stackTrace) {
-//                     //   //如果实现了onError catchError将不再执行
-//                     //   print("onError:error=${error.toString()}");
-//                     // }).catchError((onError) {
-//                     //   print("catchError");
-//                     // });
+                    // futureMethod().then((value) {
+                    //   print(value + "=>then");
+                    // }).onError((error, stackTrace) {
+                    //   //如果实现了onError catchError将不再执行
+                    //   print("onError:error=${error.toString()}");
+                    // }).catchError((onError) {
+                    //   print("catchError");
+                    // });
 //
 //                     dioRequest().then((value) {
 //                       print("then");

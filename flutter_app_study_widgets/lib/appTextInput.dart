@@ -101,6 +101,6 @@ class AppInput extends StatelessWidget {
         appBar: AppBar(
           title: Text("TextField TextFormField"),
         ),
-        body: textFormFieldContainer);
+        body: textFieldContainer);
   }
 }

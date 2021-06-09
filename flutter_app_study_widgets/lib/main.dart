@@ -5,6 +5,8 @@ import 'package:flutter_app_study_widgets/appRouter404Page.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
 import 'package:flutter_app_study_widgets/appRouter.dart';
+import 'package:flutter_app_study_widgets/appSimpleWebBrower.dart';
+import 'package:flutter_app_study_widgets/appSingleton.dart';
 import 'package:flutter_app_study_widgets/appTab_Tabbar_TabbarView_TabController.dart';
 import 'package:flutter_app_study_widgets/appText.dart';
 import 'package:flutter_app_study_widgets/appTextInput.dart';
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
     "routes onGenerateRoute 均未找到该路由 进入onUnknownRoute 返回404",
     "网络请求Dio json模型转换 页面异步刷新",
     "flutter 异步编程 Future、async、await、FutureBuilder",
+    "webview",
+    "单例",
   ];
 
   @override
@@ -179,6 +183,20 @@ class MyApp extends StatelessWidget {
                     {
                       Navigator.push(context, MaterialPageRoute(builder: (context){
                         return AppAsync();
+                      }));
+                    }
+                    break;
+                  case 13:
+                    {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return AWebBrower("https://www.baidu.com");
+                      }));
+                    }
+                    break;
+                  case 14:
+                    {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return Singleton();
                       }));
                     }
                     break;

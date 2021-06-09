@@ -44,12 +44,19 @@ main() {
 
   Student defaultBuildFunction4 = Student.defaultBuildFunction4(agePara: 8888);
   print(defaultBuildFunction4.studentinfo);
+
+  Dog(name: "是只狗");
+
 }
 
 class Dog {
   var name;
   int age = 0;
-  Dog(this.name, this.age);
+
+  // Dog(this.name, this.age);
+
+  //简写下 设置默认值 此时是命名参数加可选参数
+  Dog({this.name, this.age: 10});
 }
 
 // 函数的 构造函数 以及 setter  getter
@@ -104,7 +111,6 @@ class Student extends Object {
   //   this.name = name;
   //   this.age = age;
   // }
-
 
   //可选参数和命名参数所在的函数调用参数不需要都传
   //构造函数的可选参数

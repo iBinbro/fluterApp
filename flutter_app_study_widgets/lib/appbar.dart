@@ -15,6 +15,10 @@ class B_AppBar {
       //leading
       leadingWidth: 98.5,
 
+      //   //在Scaffold中设置
+      //     return Scaffold( extendBodyBehindAppBar: true,
+      //则Scaffold的body会从导航栏下开始布局
+
       //如果有侧边栏 则自动设置leading作为一个侧拉按钮
       automaticallyImplyLeading: true,
 
