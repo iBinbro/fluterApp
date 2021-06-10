@@ -117,24 +117,40 @@ class GetXDemos extends StatelessWidget {
               TextButton(
                 child: Text("pop 到指定页面 Get.until..."),
                 onPressed: () {
-                  Get.until((route) {
-                    print("currentRoute = ${Get.currentRoute}");
-                    return Get.currentRoute == "/getxDemos";
-                    //如果是非命名路由跳转 而是 普通路由跳转
-                    //return Get.currentRoute == "Widget的名字";
-                    // e.g
-                    return Get.currentRoute == "GetXDemos";
-                  });
+                  // Get.until((route) {
+                  //   print("currentRoute = ${Get.currentRoute}");
+                  //   return Get.currentRoute == "/getxDemos";
+                  //   //如果是非命名路由跳转 而是 普通路由跳转
+                  //   //return Get.currentRoute == "Widget的名字";
+                  //   // e.g
+                  //   return Get.currentRoute == "GetXDemos";
+                  // });
+
+                  Get.until(ModalRoute.withName("/getxDemos"));
                 },
               ),
               Divider(),
               Text("生成一个随机数，验证是否是同一个页面 == ${Random().nextInt(100)}"),
               Divider(),
               TextButton(
-                child: Text("pop 关闭所有页面 并打开一个页面 无法跳转到指定页面 Get.offNamedUntil..."),
+                child: Text("pop 到指定的页面 并打开一个指定类型的新页面 Get.offNamedUntil..."),
                 onPressed: () {
-                  Get.offNamedUntil("/getxDemos",
-                      (route) => Get.currentRoute == "/getxDemos");
+
+                  //单纯的until 可以直接遍历路由栈
+                  //push+until 则使用 ModalRoute
+
+                  // Get.offNamedUntil(
+                  //     "/apptext", ModalRoute.withName("/getxDemos"));
+
+                  //实际上如果作为判断的命名路由不为当前路由 则会关闭所有页面 并打开新页面 不推荐使用
+                  //从log打印上看
+                  // 如果栈足够多 就会导致 pop until name When(遍历栈路由) 还没全部执行完
+                  // "/apptext" 已经打开页面了 打开完成后 则完全移除了所有的栈
+                  Get.offNamedUntil("/apptext", (route) {
+                    print("pop until name When = ${Get.currentRoute}");
+                    return Get.currentRoute == "/getxDemos";
+                  });
+
                 },
               ),
             ],
