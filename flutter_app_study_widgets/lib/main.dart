@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_study_widgets/appAsync_Future.dart';
 import 'package:flutter_app_study_widgets/appDioNetRequest_jsonModel.dart';
+import 'package:flutter_app_study_widgets/appGetXDemos.dart';
 import 'package:flutter_app_study_widgets/appRouter404Page.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
@@ -13,7 +14,9 @@ import 'package:flutter_app_study_widgets/appTextInput.dart';
 import 'package:flutter_app_study_widgets/appbar.dart';
 import 'package:flutter_app_study_widgets/appsliverappbar.dart';
 import 'package:flutter_app_study_widgets/assertsImageIcon.dart';
+import 'package:get/state_manager.dart';
 import 'appBottomNavigationBar.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,18 +39,32 @@ class MyApp extends StatelessWidget {
     "flutter 异步编程 Future、async、await、FutureBuilder",
     "webview",
     "单例",
+    "Getx",
   ];
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       //点击效果高亮颜色设置
       // theme: ThemeData(
       //     splashColor: Colors.transparent, highlightColor: Colors.transparent),
 
+      //*****路由相关*****//
+      //Get路由
+      //Get命名路由
+      getPages: [
+        GetPage(name: "/getxDemos", page: () => GetXDemos()),
+        GetPage(name: "/getxDemos/:namepara", page: () => GetXDemos()),
+        GetPage(name: "/apptext", page: () => AppText())
+      ],
+      //Get出栈入栈默认的动画效果 只会影响到命名路由
+      defaultTransition: Transition.cupertino,
+      //默认push路由 路由可以进行拼接 测试只能打开两个 多了报错
+      initialRoute: "/getxDemos",
+
+      //原生路由
       //默认打开的路由
       // initialRoute: "/AppTabbar",
-
       //静态命名路由 无法传参
       routes: {
         "/AppTabbar": (context) {
@@ -55,21 +72,22 @@ class MyApp extends StatelessWidget {
         },
         "/AppSliverBar": (context) {
           return AppSliverBar();
-        }
+        },
+        "/Routerpara": (context) {
+          return Routerpara("12");
+        },
       },
       //在静态路由未找到相应路由会进入此回调 这里可获取参数
       onGenerateRoute: (RouteSettings settings) {
         var para = settings.arguments;
         var routerString = settings.name;
-
         if (routerString == "/Routerpara") {
           return MaterialPageRoute(builder: (context) {
             return Routerpara((para is String) ? (para) : "传入失败 参数不是字符串");
           });
         }
       },
-
-      //routes onGenerateRoute 静态路由 动态路由均为找到 则进入此回调
+      //routes onGenerateRoute 静态路由 动态路由均未找到 则进入此回调
       onUnknownRoute: (RouteSettings settings) {
         print("onUnknownRoute");
         return MaterialPageRoute(builder: (context) {
@@ -174,30 +192,40 @@ class MyApp extends StatelessWidget {
                     break;
                   case 11:
                     {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return NetListView();
                       }));
                     }
                     break;
                   case 12:
                     {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return AppAsync();
                       }));
                     }
                     break;
                   case 13:
                     {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return AWebBrower("https://www.baidu.com");
                       }));
                     }
                     break;
                   case 14:
                     {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return Singleton();
                       }));
+                    }
+                    break;
+                  case 15:
+                    {
+                      Get.to(() => GetXDemos(),
+                          transition: Transition.cupertino);
                     }
                     break;
                 }
