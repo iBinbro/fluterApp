@@ -28,13 +28,43 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+
+#通用插件
   dio: ^4.0.0
-  get: ^4.1.4
-  webview_flutter: ^2.0.8
-  date_format: ^2.0.2
   shared_preferences: ^2.0.6
   fluttertoast: ^8.0.7
   flutter_easyloading: ^3.0.0
+#  下拉刷新 上拉加载
+  pull_to_refresh: ^2.0.0
+  flutter_swiper_null_safety: ^1.0.2
+  qr_flutter: ^4.0.0
+  image_gallery_saver: ^1.6.9
+  decimal: ^1.2.0
+  image_picker: ^0.8.0+1
+  date_format: ^2.0.2
+#  验证码输入 密码输入
+  pin_code_fields: ^7.2.0
+  intl: ^0.17.0
+#  架构类
+  get: ^4.1.4
+#  自动调节字体大小
+  auto_size_text: ^2.1.0
+#  轮播
+  carousel_slider: ^3.0.0
+#  app拉起
+  url_launcher: ^6.0.6
+#  动画
+  animations: ^2.0.0
+#  侧滑显示按钮
+  flutter_slidable: ^0.6.0
+#  通知
+  flutter_local_notifications: ^6.0.0
+
+#仅能用于安卓和iOS
+  scan: ^1.4.3
+  cached_network_image: ^3.0.0
+  permission_handler: ^8.0.1
+  webview_flutter: ^2.0.8
 
 
 dev_dependencies:
