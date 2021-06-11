@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_study_widgets/appAsync_Future.dart';
 import 'package:flutter_app_study_widgets/appDioNetRequest_jsonModel.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos.dart';
+import 'package:flutter_app_study_widgets/appGetXDemos_Dialogs.dart';
+import 'package:flutter_app_study_widgets/appGetXDemos_ShareControllerThroughRoute.dart';
+import 'package:flutter_app_study_widgets/appGetXDemos_reactive.dart';
 import 'package:flutter_app_study_widgets/appRouter404Page.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
@@ -40,6 +43,9 @@ class MyApp extends StatelessWidget {
     "webview",
     "单例",
     "Getx",
+    "Getx Dialog",
+    "Getx Reactive=> obs workers",
+    "Getx 路由间互相读取controller数据(跨路由读取controller)",
   ];
 
   @override
@@ -55,7 +61,9 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: "/getxDemos", page: () => GetXDemos()),
         GetPage(name: "/getxDemos/:namepara", page: () => GetXDemos()),
-        GetPage(name: "/apptext", page: () => AppText())
+        GetPage(name: "/apptext", page: () => AppText()),
+        GetPage(name: "/GexReactive", page: () => GetxReactive()),
+        GetPage(name: "/shareController", page: () => GetXShareController(999)),
       ],
       //Get出栈入栈默认的动画效果 只会影响到命名路由
       defaultTransition: Transition.cupertino,
@@ -226,6 +234,22 @@ class MyApp extends StatelessWidget {
                     {
                       Get.to(() => GetXDemos(),
                           transition: Transition.cupertino);
+                    }
+                    break;
+                  case 16:
+                    {
+                      Get.to(() => GetXDialogDemos(),
+                          transition: Transition.cupertino);
+                    }
+                    break;
+                  case 17:
+                    {
+                      Get.toNamed("/GexReactive", preventDuplicates: false);
+                    }
+                    break;
+                  case 18:
+                    {
+                      Get.toNamed("/shareController", preventDuplicates: false);
                     }
                     break;
                 }
