@@ -18,6 +18,10 @@ class BinStateFulExample extends StatelessWidget {
             ],
           ),
           tabBuilder: (BuildContext context, int index) {
+
+            //通过context查找最近的一个类型符合的组件
+            var findResult = context.findAncestorWidgetOfExactType<DefaultTabController>();
+
             if (index == 0) {
               return StateFulText();
             } else if (index == 1) {
@@ -39,20 +43,28 @@ class _StateFulTextState extends State<StateFulText> {
 
   @override
   Widget build(BuildContext context) {
+    print("build 被调用了");
     return CupertinoPageScaffold(
       child: Center(
-        child: Column(
-          children: <Widget>[
-            Text('${count}'),
-            CupertinoButton(
-                child: Text('+'),
-                onPressed: () {
-                  setState(() {
-                    count++;
-                  });
-                })
-          ],
-        ),
+        child: ListView.builder(itemBuilder: (context, index){
+
+          var findResult = context.findAncestorWidgetOfExactType<CupertinoPageScaffold>();
+
+          if (index == 0) {
+            return CupertinoButton(child: Text("button"), onPressed: (){
+
+              // var findResult = context.findAncestorWidgetOfExactType<Center>();
+              // print("==");
+
+              setState(() {
+                var findResult = context.findAncestorWidgetOfExactType<Center>();
+                print("==");
+              });
+
+            });
+          }
+          return Text('listview');
+        }),
       ),
     );
   }
@@ -84,3 +96,19 @@ class _BinListFulWidgetState extends State<BinListFulWidget> {
     );
   }
 }
+
+class BinStatefulLifeCycle extends StatefulWidget {
+  @override
+  _BinStatefulLifeCycleState createState() => _BinStatefulLifeCycleState();
+}
+
+class _BinStatefulLifeCycleState extends State<BinStatefulLifeCycle> {
+
+  widget.sta
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+

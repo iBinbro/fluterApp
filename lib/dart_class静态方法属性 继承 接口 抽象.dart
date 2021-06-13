@@ -1,3 +1,4 @@
+
 main() {
   //静态属性和方法
   print(Human.humanname);
@@ -13,6 +14,8 @@ main() {
   superMan.poor();
   print(superMan.name);
 
+  DartPro dartPro = DartPro();
+  dartPro.userOther();
 
 }
 
@@ -53,8 +56,28 @@ abstract class DartTeacher {
   // useDart(){
   //   print('会dart编程');
   // }
-
   useFlutter();
+
+  // userOther();//子类继承必须要override方法
+  userOther() => print("userother 抽象类的方法并有方法体");//子类继承则不需要overried改方法
+
+}
+
+//继承抽象类 如果抽象类的方法是已经被实现 则不需要强制overried
+class DartPro extends DartTeacher{
+
+  @override
+  useDart() {
+    // TODO: implement useDart
+    throw UnimplementedError();
+  }
+
+  @override
+  useFlutter() {
+    // TODO: implement useFlutter
+    throw UnimplementedError();
+  }
+
 }
 
 //继承 构造函数不能被继承 所以每个子类都要有自己的构造函数
@@ -82,6 +105,12 @@ class CoderMan extends Human implements EnglishTeacher, DartTeacher {
   @override
   useFlutter() {
     print('也会flutter');
+  }
+
+  @override
+  userOther() {
+    // TODO: implement userOther
+    throw UnimplementedError();
   }
 }
 

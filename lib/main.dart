@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_app/dart_statefulwidget.dart';
 import 'package:flutter_app/flutter_router.dart';
 import 'scrollview.dart';
@@ -16,7 +17,7 @@ class BinApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //构造方法返回一个app
 
-    return createApp();
+    // return createApp();
 
     return MaterialApp(
       title: 'Flutter Demo',
