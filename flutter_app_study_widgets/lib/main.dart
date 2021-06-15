@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/appAnimationDemos.dart';
 import 'package:flutter_app_study_widgets/appAsync_Future.dart';
 import 'package:flutter_app_study_widgets/appDioNetRequest_jsonModel.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
     "Getx 路由间互相读取controller数据(跨路由读取controller)",
     "Getx 国际化",
     "Getx 改变主题",
+    "动画",
   ];
 
   @override
@@ -276,6 +278,11 @@ class MyApp extends StatelessWidget {
                   case 20:
                     {
                       Get.to(() => GetXThemes());
+                    }
+                    break;
+                  case 21:
+                    {
+                      Get.to(() => AppAnimationDemos());
                     }
                     break;
                 }
