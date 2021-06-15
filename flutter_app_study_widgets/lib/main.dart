@@ -4,7 +4,9 @@ import 'package:flutter_app_study_widgets/appDioNetRequest_jsonModel.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos_Dialogs.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos_ShareControllerThroughRoute.dart';
+import 'package:flutter_app_study_widgets/appGetXDemos_language.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos_reactive.dart';
+import 'package:flutter_app_study_widgets/appGetXDemos_themes.dart';
 import 'package:flutter_app_study_widgets/appRouter404Page.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
     "Getx Dialog",
     "Getx Reactive=> obs workers",
     "Getx 路由间互相读取controller数据(跨路由读取controller)",
+    "Getx 国际化",
+    "Getx 改变主题",
   ];
 
   @override
@@ -102,6 +106,18 @@ class MyApp extends StatelessWidget {
           return App404Page();
         });
       },
+
+      //国际化
+      translations: LanguageTransition(), //国际化的键值存储对象
+      // locale: Locale("zh", "CN"),
+      locale: Locale("zhzhzhzhzhzhzhzh", "?????"), //默认的语言
+      fallbackLocale:
+          Locale('enenenenenenenen', "?????????"), //应用指定语言失败时，指定一个固定语言
+      // fallbackLocale: Locale('en', "US"),
+
+      //主题
+      theme: appLightThemeData,
+      darkTheme: appDarkThemeData,
 
       home: Scaffold(
         //顶部导航栏
@@ -250,6 +266,16 @@ class MyApp extends StatelessWidget {
                   case 18:
                     {
                       Get.toNamed("/shareController", preventDuplicates: false);
+                    }
+                    break;
+                  case 19:
+                    {
+                      Get.to(() => GetxLanguage());
+                    }
+                    break;
+                  case 20:
+                    {
+                      Get.to(() => GetXThemes());
                     }
                     break;
                 }
