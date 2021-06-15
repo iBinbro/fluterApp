@@ -14,14 +14,20 @@ import 'package:get/get.dart';
 //创建Dark ThemeData对象
 final ThemeData appDarkThemeData = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Colors.red,
-    textTheme: TextTheme(headline1: TextStyle(color: Colors.red)));
+    primaryColor: Colors.red, // 主要部分背景颜色（导航和tabBar等）
+    scaffoldBackgroundColor:
+        Colors.red, //Scaffold的背景颜色。典型Material应用程序或应用程序内页面的背景颜色
+    textTheme: TextTheme(headline1: TextStyle(color: Colors.yellow)),
+    appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.yellow)));
 
 //创建light ThemeData对象
 final ThemeData appLightThemeData = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Colors.purple,
-    textTheme: TextTheme(headline1: TextStyle(color: Colors.purple)));
+    primaryColor: Colors.white, // 主要部分背景颜色（导航和tabBar等）
+    scaffoldBackgroundColor:
+        Colors.white, //Scaffold的背景颜色。典型Material应用程序或应用程序内页面的背景颜色
+    textTheme: TextTheme(headline1: TextStyle(color: Colors.blue)),
+    appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.black)));
 
 class GetXThemes extends StatelessWidget {
   const GetXThemes({Key? key}) : super(key: key);

@@ -12,18 +12,37 @@ import 'dart:ui' as UI;
 // fallbackLocale: Locale('enenenenenenenen', "?????????"),//应用指定语言失败时，指定一个固定语言
 // // fallbackLocale: Locale('en', "US"),
 
+abstract class LanguageTransitionDic {
+  //文本对应的KEY
+  static const Lang = "language";
+
+  //文本KEY所对应的翻译文本
+  static const ch = {
+    //哪种语言
+    Lang: "我是中文", //具体的键值对
+  };
+  static const en = {
+    //哪种语言
+    Lang: "This is English", //具体的键值对
+  };
+}
+
 class LanguageTransition extends Translations {
   @override
   // TODO: implement keys
   Map<String, Map<String, String>> get keys {
+    // return {
+    //   "zhzhzhzhzhzhzhzh": {
+    //     "language": "我是中文",
+    //   },
+    //   "enenenenenenenen": {
+    //     "language": "This is English",
+    //   }
+    // };
+    //进一步封装
     return {
-      "zhzhzhzhzhzhzhzh": {
-        //哪种语言
-        "language": "我是中文", //具体的键值对
-      },
-      "enenenenenenenen": {
-        "language": "This is English",
-      },
+      "zhzhzhzhzhzhzhzh": LanguageTransitionDic.ch,
+      "enenenenenenenen": LanguageTransitionDic.en,
     };
   }
 }
@@ -35,7 +54,7 @@ class GetxLanguage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("GetX 国际化 ${'language'.tr}"),
+        title: Text("GetX 国际化 ${LanguageTransitionDic.Lang.tr}"),
       ),
       body: Column(
         children: [
