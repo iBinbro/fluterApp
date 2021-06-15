@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_app/appdemo/appdemo.dart';
 import 'package:flutter_app/dart_statefulwidget.dart';
 import 'package:flutter_app/flutter_router.dart';
@@ -18,7 +19,6 @@ class BinApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //构造方法返回一个app
-
     // return createRouterApp();
 
     return MaterialApp(
