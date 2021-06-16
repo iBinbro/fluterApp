@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_study_widgets/appAnimationDemos_Hero.dart';
 import 'package:get/get.dart';
 
 class AppAnimationDemos extends StatelessWidget {
@@ -28,10 +29,16 @@ class AppAnimationDemos extends StatelessWidget {
                       Get.to(() => ControllerMoreTween());
                     },
                     icon: Text("一个animationController使用多个Tween(动画组)"));
+              } else if (index == 3) {
+                return IconButton(
+                    onPressed: () {
+                      Get.to(() => HeroAnimationDemo());
+                    },
+                    icon: Text("Hero动画"));
               }
               return Text("");
             },
-            itemCount: 3));
+            itemCount: 4));
   }
 }
 
