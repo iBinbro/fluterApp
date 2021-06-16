@@ -1,4 +1,3 @@
-
 main() {
   //静态属性和方法
   print(Human.humanname);
@@ -16,7 +15,6 @@ main() {
 
   DartPro dartPro = DartPro();
   dartPro.userOther();
-
 }
 
 class Human {
@@ -51,6 +49,10 @@ class EnglishTeacher {
 abstract class DartTeacher {
   String classname = 'dart精通';
 
+  //抽象类的构造函数 被子类继承时必须要调用super
+  // String tempString;
+  // DartTeacher(this.tempString);
+
   //抽象类方法不用方法体 没实际意义 但是这么写不会报错
   useDart();
   // useDart(){
@@ -59,12 +61,14 @@ abstract class DartTeacher {
   useFlutter();
 
   // userOther();//子类继承必须要override方法
-  userOther() => print("userother 抽象类的方法并有方法体");//子类继承则不需要overried改方法
+  userOther() => print("userother 抽象类的方法并有方法体"); //子类继承则不需要overried改方法
 
 }
 
 //继承抽象类 如果抽象类的方法是已经被实现 则不需要强制overried
-class DartPro extends DartTeacher{
+class DartPro extends DartTeacher {
+  //继承了抽象类 需要构造函数
+  // DartPro(a) : super("123");
 
   @override
   useDart() {
@@ -77,7 +81,6 @@ class DartPro extends DartTeacher{
     // TODO: implement useFlutter
     throw UnimplementedError();
   }
-
 }
 
 //继承 构造函数不能被继承 所以每个子类都要有自己的构造函数
@@ -114,28 +117,26 @@ class CoderMan extends Human implements EnglishTeacher, DartTeacher {
   }
 }
 
-class RichMan{
-
+class RichMan {
   String name = '有钱人';
 
-  rich(){
+  rich() {
     print('发动有钱技能');
   }
 }
 
-class SpiderMan{
-
+class SpiderMan {
   String name = '穷比';
 
-  poor(){
+  poor() {
     print('穷人发动变异技能');
   }
-  rich(){
+
+  rich() {
     print('穷人也变有钱了');
   }
 }
 
 //通过mixins实现多继承效果 mixins既不属于继承也不是接口 是一个新特性
 //mixins的类不能有构造函数 mixins的两个类同名属性和方法 谁在后面会替换前面的
-class SuperMan with RichMan,SpiderMan{
-}
+class SuperMan with RichMan, SpiderMan {}

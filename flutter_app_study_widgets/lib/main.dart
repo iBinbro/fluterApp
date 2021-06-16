@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
       //Get出栈入栈默认的动画效果 只会影响到命名路由
       defaultTransition: Transition.cupertino,
       //默认push路由 路由可以进行拼接 测试只能打开两个 多了报错
-      initialRoute: "/getxDemos",
+      // initialRoute: "/getxDemos",
 
       //原生路由
       //默认打开的路由
