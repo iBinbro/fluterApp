@@ -72,6 +72,7 @@ dependencies:
 
 
 dev_dependencies:
+  flutter_native_splash: ^1.2.0
   flutter_test:
     sdk: flutter
 
@@ -117,3 +118,21 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+  #  //android_gravity影响不到背景的设置 background_image默认是fill
+  #  background_image: images/LaunchImage.png
+
+#  //启动图的背景色不允许带透明度 ❌color: "#FF101010"
+  color: "#101010"
+#  //尽量选最大规格的图片
+  image: images/3.0x/LaunchImage.png
+  color_dark: "#101010"
+  image_dark: images/3.0x/LaunchImage.png
+  fullscreen: true
+  ardroid: true
+#  //image的对齐方式
+  android_gravity: center
+#  //不为iOS自动生成启动页
+  ios: false
+#//在项目根目录下 运行
+#  /xxx/xxx/xxx/flutter/bin/flutter --no-color pub run flutter_native_splash:create
