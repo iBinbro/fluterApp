@@ -158,6 +158,7 @@ class AsyncAwaitDemo extends StatelessWidget {
   }
 }
 
+//这个要作为顶层函数 不要包含到任何类或者对象里面 参照main函数
 caculateSum(SendPort sendPort) {
   print("执行caculateSum");
 
