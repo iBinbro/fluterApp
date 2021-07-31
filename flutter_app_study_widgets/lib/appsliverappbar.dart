@@ -34,6 +34,9 @@ class AppSliverBar extends StatelessWidget {
                 //整个AppBar的高度 默认且最小为 toolbarHeight + bottom组件的高度
                 expandedHeight: 44 + 48 + 150, //不含状态栏20
 
+                //flexibleSpace高度是变化的 这里限制了高度减小的最低值 想要flexibleSpace高度不缩放这里要设置成 kToolbarHeight/导航栏 + 20/状态栏 + flexibleSpace的内容高度
+                // collapsedHeight
+
                 //primary SliverAppBar的子组件布局顶部是否留出Padding空白(不是margin空白)以免和状态栏重合(无论设置与否 导航栏都是从顶部开始 而不是从状态栏下部开始)
                 //primary 为true 则flexibleSpace可利用的空间就会多出20
                 //flexibleSpace的高度范围 <= MAX(toolbarHeight+bottom组件的高度, expandedHeight)

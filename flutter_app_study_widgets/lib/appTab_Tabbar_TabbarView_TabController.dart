@@ -40,6 +40,9 @@ class AppTabbar extends StatelessWidget {
 
               tabs: tabs,
 
+              //这个属性默认false tab会平分屏幕宽度 true则会维持tab本身的大小
+              isScrollable: true,
+
               // //指示器颜色(如果使用的是默认自带的指示器起作用)
               indicatorColor: Colors.red,
 

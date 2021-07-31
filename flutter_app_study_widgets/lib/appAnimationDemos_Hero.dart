@@ -15,7 +15,7 @@ class HeroAnimationDemo extends StatelessWidget {
           IconButton(
               onPressed: () {
                 // Get.to(() => HeroAnimationDemo2(), transition: Transition.noTransition);
-                Get.to(() => HeroAnimationDemo2(), transition: Transition.cupertino);
+                Get.to(() => HeroAnimationDemo2(), transition: Transition.noTransition);
               },
               icon: Hero(tag: "123", child: Image.asset("images/home.png"))),
         ],

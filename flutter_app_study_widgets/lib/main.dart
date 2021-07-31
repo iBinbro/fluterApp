@@ -8,6 +8,7 @@ import 'package:flutter_app_study_widgets/appGetXDemos_ShareControllerThroughRou
 import 'package:flutter_app_study_widgets/appGetXDemos_language.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos_reactive.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos_themes.dart';
+import 'package:flutter_app_study_widgets/appIsolateAsyncAwait.dart';
 import 'package:flutter_app_study_widgets/appRouter404Page.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
     "Getx 国际化",
     "Getx 改变主题",
     "动画",
+    "async await Future",
   ];
 
   @override
@@ -283,6 +285,11 @@ class MyApp extends StatelessWidget {
                   case 21:
                     {
                       Get.to(() => AppAnimationDemos());
+                    }
+                    break;
+                  case 22:
+                    {
+                      Get.to(() => AsyncAwaitDemo());
                     }
                     break;
                 }

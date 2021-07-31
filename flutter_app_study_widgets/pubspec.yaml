@@ -38,7 +38,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   flutter_swiper_null_safety: ^1.0.2
   qr_flutter: ^4.0.0
-  image_gallery_saver: ^1.6.9
+#  image_gallery_saver: ^1.6.9
   decimal: ^1.2.0
   image_picker: ^0.8.0+1
   date_format: ^2.0.2
