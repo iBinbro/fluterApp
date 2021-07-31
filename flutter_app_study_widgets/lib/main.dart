@@ -238,7 +238,7 @@ class MyApp extends StatelessWidget {
                     {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return AWebBrower("https://www.baidu.com");
+                        return AWebBrower("http://snail-nebula2-xy.tp.dagcore.com:30080/privacy.html");
                       }));
                     }
                     break;
