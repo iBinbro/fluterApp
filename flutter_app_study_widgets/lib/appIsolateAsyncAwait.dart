@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 
 class AsyncAwaitDemo extends StatelessWidget {
   final List titles = [
-    "复杂计算阻塞主Isolate",
+    "耗时计算阻塞 main Isolate",
     "实现异步的方式",
     "Future Microtask 队列优先级",
-    "Isolate"
+    "Isolate",
+    "Isolate 实战进行耗时计算"
   ];
 
   @override
@@ -53,6 +54,11 @@ class AsyncAwaitDemo extends StatelessWidget {
                       testIsolate();
                     }
                     break;
+                  case 4:
+                    {
+                      testUseIsolate();
+                    }
+                    break;
                 }
               },
               child: Text(titles[index]));
@@ -62,12 +68,12 @@ class AsyncAwaitDemo extends StatelessWidget {
     );
   }
 
-  asyncWay() async {
-    print("异步执行体");
+  asyncWay() {
+    Future(() => print("异步执行体"));
   }
 
   hardCaculate() {
-    for (int i = 0; i < 100000000000000000; i++) {
+    for (int i = 0; i < 2000; i++) {
       print("${i}");
     }
   }
@@ -110,15 +116,72 @@ class AsyncAwaitDemo extends StatelessWidget {
   }
 
   testIsolate() async {
-    //创建管道
-    ReceivePort port = ReceivePort();
-    //关联管道和方法
-    Isolate isolate = await Isolate.spawn((SendPort message) {
-      // message.send("hello");
-    }, port.sendPort);
+    //当前isolate的port 可通过port的sendport向port归属的isolate发送数据
+    var mainIsolatePort = new ReceivePort();
+    //newSendPort 用来存储新建isolate的sendport
+    SendPort? newSendPort;
 
-    port.listen((message) {
-      // print("message = ${message}");
-    });
+    //新建的isolate会通过mainisolate的sendport发送自己的sendport
+
+    // //监听mainisolate的port获取传过来的sendport
+    // mainIsolatePort.listen((message) {
+    //   newSendPort = (message is SendPort) ? (message) : null;
+    //   //通过监听我们拿到了新建的isolate的sendport
+    //   print("开始通过newisolate的sendport发送数据");
+    //   newSendPort?.send("在mainisolate向newisolate发送数据");
+    // });
+
+    //传入的函数会被执行,第二个参数是当前isolate的sendport，可用于将新建的isolate的sendport发送出来，
+    //通过接收到新创建的isolate的sendport就可以向新建的isolate发数据了
+    print("新建newIsolate 这里要await等待spawn完成");
+    Isolate newIsolate =
+        await Isolate.spawn(entryMethod, mainIsolatePort.sendPort);
+
+    //获取port收到数据的第二个方式 与listen冲突 且必须在spawn后执行 因为获取port是阻塞式，会阻塞后面的代码
+    //entryMethod 执行在以下方法后面(原因我也不知道为啥😭)，并不用当心在下面获取port时，entryMethod执行过了导致收不到数据
+    print("通过await port first 方式获取newsendport");
+    //阻塞当前isolate执行listen port 操作直到获取到了发送的数据
+    SendPort awaitNewSendPort = await mainIsolatePort.first;
+    awaitNewSendPort.send("await port first 发送数据啦~~");
+    print("通过await port first 方式发送了数据");
   }
+
+  testUseIsolate() async {
+    var mainPort = ReceivePort();
+    mainPort.listen((message) {
+      print("收到数据");
+      if (message is int){
+        print("最后计算结果 = ${message}");
+      }
+    });
+    await Isolate.spawn(caculateSum, mainPort.sendPort);
+  }
+}
+
+caculateSum(SendPort sendPort) {
+  print("执行caculateSum");
+
+  int j = 0;
+  for (int i = 0; i < 10000; i++) {
+    print("循环 ${i}");
+    j = j + i;
+    if (i==9999){
+      print("计算出的结果 ${j}");
+      sendPort.send(j);
+    }
+  }
+}
+
+/// 新isolate的入口函数 必须是top-level函数 不属于任何类或者对象(类似于 main 函数，是app的入口)
+entryMethod(SendPort mainIsolateSendPort) {
+  print("entryMethod 入口函数被执行");
+  //创建一个和isolate关联的port
+  var port = new ReceivePort();
+  //监听向这个port发送的数据
+  port.listen((message) {
+    print("newIsolate收到的数据=" + message);
+  });
+  //通过mainisolate的sendport将新建的isolate的sendport发送给mainisolate
+  print("将新建的isolate的sendport发送出去");
+  mainIsolateSendPort.send(port.sendPort);
 }
