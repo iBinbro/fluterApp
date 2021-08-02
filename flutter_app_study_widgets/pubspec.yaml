@@ -68,7 +68,7 @@ dependencies:
   scan: ^1.4.3
   cached_network_image: ^3.0.0
   permission_handler: ^8.0.1
-  webview_flutter: ^2.0.8
+  webview_flutter: ^2.0.10
 
 
 dev_dependencies:
