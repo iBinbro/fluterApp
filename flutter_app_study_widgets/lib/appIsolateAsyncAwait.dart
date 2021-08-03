@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:isolate';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -9,7 +11,8 @@ class AsyncAwaitDemo extends StatelessWidget {
     "实现异步的方式",
     "Future Microtask 队列优先级",
     "Isolate",
-    "Isolate 实战进行耗时计算"
+    "Isolate 实战进行耗时计算",
+    "Isolate 通过IsolateNameServer注册以及获取sendport"
   ];
 
   @override
@@ -57,6 +60,11 @@ class AsyncAwaitDemo extends StatelessWidget {
                   case 4:
                     {
                       testUseIsolate();
+                    }
+                    break;
+                  case 5:
+                    {
+                      testIsolateNameServer();
                     }
                     break;
                 }
@@ -150,12 +158,56 @@ class AsyncAwaitDemo extends StatelessWidget {
     var mainPort = ReceivePort();
     mainPort.listen((message) {
       print("收到数据");
-      if (message is int){
+      if (message is int) {
         print("最后计算结果 = ${message}");
       }
     });
     await Isolate.spawn(caculateSum, mainPort.sendPort);
   }
+
+  testIsolateNameServer() async {
+    print("testIsolateNameServer start");
+    var mainPort = ReceivePort();
+
+    IsolateNameServer.removePortNameMapping("testIsolateNameServer");
+    IsolateNameServer.registerPortWithName(
+        mainPort.sendPort, "testIsolateNameServer");
+
+    Isolate? newIsolate =
+        await Isolate.spawn(isolateNameServerCaculateSum, mainPort.sendPort);
+
+    mainPort.listen((message) {
+      print("收到数据");
+      if (message is int) {
+        print("testIsolateNameServer 最后计算结果 = ${message}");
+      }
+
+      //计算完成后的销毁
+      IsolateNameServer.removePortNameMapping("testIsolateNameServer");
+      mainPort.close();
+      //关闭Isolate对象
+      newIsolate?.kill(priority: Isolate.immediate);
+      newIsolate = null;
+    });
+  }
+}
+
+//这个要作为顶层函数 不要包含到任何类或者对象里面 参照main函数
+isolateNameServerCaculateSum(SendPort sendPort) {
+  print("执行isolateNameServerCaculateSum");
+  int j = 0;
+  for (int i = 0; i < 100000; i++) {
+    j = j + i;
+    if (i == 99999) {
+      //⚠️❌不要进行频繁的print操作，这会导致出现循环提前终止原因未知
+      // print("isolateNameServerCaculateSum 计算出的结果 ${j}");
+      SendPort? sendPort =
+          IsolateNameServer.lookupPortByName("testIsolateNameServer");
+
+      sendPort?.send(j);
+    }
+  }
+  print("执行isolateNameServerCaculateSum end");
 }
 
 //这个要作为顶层函数 不要包含到任何类或者对象里面 参照main函数
@@ -164,9 +216,10 @@ caculateSum(SendPort sendPort) {
 
   int j = 0;
   for (int i = 0; i < 10000; i++) {
-    print("循环 ${i}");
+    //⚠️❌不要进行频繁的print操作，这会导致出现循环提前终止原因未知
+    // print("循环 ${i}");
     j = j + i;
-    if (i==9999){
+    if (i == 9999) {
       print("计算出的结果 ${j}");
       sendPort.send(j);
     }
