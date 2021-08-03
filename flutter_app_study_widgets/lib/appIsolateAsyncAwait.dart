@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AsyncAwaitDemo extends StatelessWidget {
@@ -12,7 +13,8 @@ class AsyncAwaitDemo extends StatelessWidget {
     "Future Microtask 队列优先级",
     "Isolate",
     "Isolate 实战进行耗时计算",
-    "Isolate 通过IsolateNameServer注册以及获取sendport"
+    "Isolate 通过IsolateNameServer注册以及获取sendport",
+    "compute isolate的封装 快速创建isolate并在新isolate执行函数"
   ];
 
   @override
@@ -65,6 +67,11 @@ class AsyncAwaitDemo extends StatelessWidget {
                   case 5:
                     {
                       testIsolateNameServer();
+                    }
+                    break;
+                  case 6:
+                    {
+                      testCompute();
                     }
                     break;
                 }
@@ -190,6 +197,27 @@ class AsyncAwaitDemo extends StatelessWidget {
       newIsolate = null;
     });
   }
+
+  testCompute() async {
+    int result = await compute(computeCaculateSum, 10000);
+    print("testCompute收到的结果 ${result}");
+  }
+}
+
+int computeCaculateSum(int num) {
+  print("computeCaculateSum");
+
+  int j = 0;
+  for (int i = 0; i < num; i++) {
+    //⚠️❌不要进行频繁的print操作，这会导致出现循环提前终止原因未知
+    // print("循环 ${i}");
+    j = j + i;
+    if (i == num - 1) {
+      print("计算出的结果 ${j}");
+      return j;
+    }
+  }
+  return 0;
 }
 
 //这个要作为顶层函数 不要包含到任何类或者对象里面 参照main函数
