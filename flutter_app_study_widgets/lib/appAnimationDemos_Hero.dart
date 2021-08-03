@@ -14,15 +14,20 @@ class HeroAnimationDemo extends StatelessWidget {
         children: [
           IconButton(
               onPressed: () {
-                // Get.to(() => HeroAnimationDemo2(), transition: Transition.noTransition);
-                Get.to(
-                  () => HeroAnimationDemo2(),
-                  transition: Transition.cupertino,
-                );
+                Get.to(() => HeroAnimationDemo2(),
+                    transition: Transition.noTransition,
+                    duration: Duration(seconds: 3));
+                // Get.to(() => HeroAnimationDemo2(),
+                //     transition: Transition.cupertino,
+                //     duration: Duration(seconds: 3));
               },
               icon: Hero(
                 tag: "123",
-                child: Image.asset("images/home.png"),
+                child: Container(
+                  color: Colors.brown,
+                  width: 50,
+                  height: 50,
+                ),
                 //执行动画时,child将被占位
                 placeholderBuilder: (context, size, widget) {
                   return Container(
@@ -68,6 +73,8 @@ class HeroAnimationDemo2 extends StatelessWidget {
       body: Center(
         child: Hero(
           tag: "123",
+          //这里有个问题，就是图片资源加载是耗时的，这里导致一个问题就是第一次执行hero时，轨迹动画中的组件是逐渐缩小的，
+          // 因为这里的图片没加载出来就是0大小
           child: Image.asset("images/homesel.png"),
           //执行动画时,child将被占位
           placeholderBuilder: (context, size, widget) {
