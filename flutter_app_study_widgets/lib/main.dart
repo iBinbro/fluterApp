@@ -9,6 +9,7 @@ import 'package:flutter_app_study_widgets/appGetXDemos_language.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos_reactive.dart';
 import 'package:flutter_app_study_widgets/appGetXDemos_themes.dart';
 import 'package:flutter_app_study_widgets/appIsolateAsyncAwait.dart';
+import 'package:flutter_app_study_widgets/appListWheelScrollView.dart';
 import 'package:flutter_app_study_widgets/appRouter404Page.dart';
 import 'package:flutter_app_study_widgets/appConstraintBox.dart';
 import 'package:flutter_app_study_widgets/appLayout.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
     "Getx 改变主题",
     "动画",
     "async await Future",
+    "ListWheelScrollViewExample 废弃",
   ];
 
   @override
@@ -290,6 +292,11 @@ class MyApp extends StatelessWidget {
                   case 22:
                     {
                       Get.to(() => AsyncAwaitDemo());
+                    }
+                    break;
+                  case 23:
+                    {
+                      // Get.to(() => WheelExample());
                     }
                     break;
                 }
