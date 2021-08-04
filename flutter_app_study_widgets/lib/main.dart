@@ -27,6 +27,7 @@ import 'appBottomNavigationBar.dart';
 import 'package:get/get.dart';
 
 void main() {
+  WidgetsBinding
   runApp(MyApp());
 }
 
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
     "Getx 改变主题",
     "动画",
     "async await Future",
-    "ListWheelScrollViewExample 废弃",
+    "circle_list 圆形旋转widget 第三方组件使用",
   ];
 
   @override
@@ -296,7 +297,7 @@ class MyApp extends StatelessWidget {
                     break;
                   case 23:
                     {
-                      // Get.to(() => WheelExample());
+                      Get.to(() => WheelExample());
                     }
                     break;
                 }

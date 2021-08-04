@@ -1,46 +1,54 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_app_study_widgets/circle_wheel_scroll_view.dart';
+import 'package:circle_list/circle_list.dart';
 
 class WheelExample extends StatelessWidget {
-  Widget _buildItem(int i) {
-    return Center(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          width: 80,
-          padding: EdgeInsets.all(10),
-          color: Colors.blue[100 * ((i % 8) + 1)],
-          child: Center(
-            child: Text(
-              i.toString(),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Wheel'),
+        title: Text('circle_list 圆形旋转widget 第三方组件使用'),
       ),
       body: SafeArea(
         child: Center(
-          child: Container(
-            // height: 260,
-            // width: 160,
-            child: CircleListScrollView(
-              physics: CircleFixedExtentScrollPhysics(),
-              axis: Axis.horizontal,
-              itemExtent: 20,
-              children: List.generate(20, _buildItem),
-              radius: MediaQuery.of(context).size.width * 0.2,
+          child: CircleList(origin: Offset(0, 0), children: [
+            GestureDetector(child: Container(
+              width: 10,
+              height: 10,
+              color: Colors.brown,
+            ),onTap: (){
+              print("点击棕色");
+            },),
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.yellow,
             ),
-          ),
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.yellow,
+            ),
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.yellow,
+            ),
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.blue,
+            ),
+          ]),
         ),
       ),
     );

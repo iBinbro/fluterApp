@@ -63,6 +63,10 @@ dependencies:
   flutter_staggered_grid_view: ^0.4.0
 #下拉菜单
   gzx_dropdown_menu: ^3.1.0
+#摩天轮滚动/水平滚动
+  flutter_fortune_wheel: ^1.1.0
+#圆形滚动菜单
+  circle_list: ^1.0.5
 
 #仅能用于安卓和iOS
   scan: ^1.4.3
@@ -92,7 +96,6 @@ flutter:
     - images/
     - images/2x/
     - images/3x/
-    - .DS_Store
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
