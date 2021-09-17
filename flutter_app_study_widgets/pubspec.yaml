@@ -72,7 +72,15 @@ dependencies:
   scan: ^1.4.3
   cached_network_image: ^3.0.0
   permission_handler: ^8.0.1
-  webview_flutter: ^2.0.10
+  webview_flutter: ^2.0.13
+
+  flutter_inappwebview: ^5.3.2
+
+  flutter_webview_plugin: ^0.4.0
+
+  flutter_html: ^2.1.2
+
+  flutter_widget_from_html: ^0.7.0
 
 
 dev_dependencies:

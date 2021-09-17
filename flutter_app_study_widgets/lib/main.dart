@@ -19,6 +19,7 @@ import 'package:flutter_app_study_widgets/appSingleton.dart';
 import 'package:flutter_app_study_widgets/appTab_Tabbar_TabbarView_TabController.dart';
 import 'package:flutter_app_study_widgets/appText.dart';
 import 'package:flutter_app_study_widgets/appTextInput.dart';
+import 'package:flutter_app_study_widgets/appWebviewDemos.dart';
 import 'package:flutter_app_study_widgets/appbar.dart';
 import 'package:flutter_app_study_widgets/appsliverappbar.dart';
 import 'package:flutter_app_study_widgets/assertsImageIcon.dart';
@@ -27,7 +28,6 @@ import 'appBottomNavigationBar.dart';
 import 'package:get/get.dart';
 
 void main() {
-  WidgetsBinding
   runApp(MyApp());
 }
 
@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
     "动画",
     "async await Future",
     "circle_list 圆形旋转widget 第三方组件使用",
+    "webview 各类第三方库",
   ];
 
   @override
@@ -298,6 +299,11 @@ class MyApp extends StatelessWidget {
                   case 23:
                     {
                       Get.to(() => WheelExample());
+                    }
+                    break;
+                  case 24:
+                    {
+                      Get.to(() => WebViews());
                     }
                     break;
                 }
