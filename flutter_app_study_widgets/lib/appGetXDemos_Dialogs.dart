@@ -19,7 +19,7 @@ class GetXDialogDemos extends StatelessWidget {
           TextButton(
             child: Text("snacbar"),
             onPressed: () {
-              Get.snackbar("snacbar", "message", onTap: (GetBar snack) {
+              Get.snackbar("snacbar", "message", onTap: (GetBarsnack) {
                 print("snacbar ontap");
               }, duration: Duration(seconds: 5));
             },
