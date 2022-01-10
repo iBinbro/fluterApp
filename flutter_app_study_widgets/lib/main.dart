@@ -23,6 +23,7 @@ import 'package:flutter_app_study_widgets/appWebviewDemos.dart';
 import 'package:flutter_app_study_widgets/appbar.dart';
 import 'package:flutter_app_study_widgets/appsliverappbar.dart';
 import 'package:flutter_app_study_widgets/assertsImageIcon.dart';
+import 'package:flutter_app_study_widgets/expanded_flexible_text.dart';
 import 'package:get/state_manager.dart';
 import 'appBottomNavigationBar.dart';
 import 'package:get/get.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
     "async await Future",
     "circle_list 圆形旋转widget 第三方组件使用",
     "webview 各类第三方库",
+    "ExpandedFlexibleText",
   ];
 
   @override
@@ -304,6 +306,11 @@ class MyApp extends StatelessWidget {
                   case 24:
                     {
                       Get.to(() => WebViews());
+                    }
+                    break;
+                  case 25:
+                    {
+                      Get.to(() => ExpandedFlexibleText());
                     }
                     break;
                 }
